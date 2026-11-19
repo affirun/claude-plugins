@@ -1,0 +1,19 @@
+{
+  "name": "affirun",
+  "version": "0.1.0",
+  "description": "Affirun for Claude Code: find the source footage and the Coupang product behind a viral reel, in your own Chrome, and save both to your Affirun account.",
+  "author": {
+    "name": "Affirun",
+    "url": "https://affirun.com"
+  },
+  "homepage": "https://affirun.com",
+  "keywords": [
+    "affirun",
+    "coupang",
+    "reels",
+    "douyin",
+    "tiktok",
+    "rednote"
+  ],
+  "privacyPolicyUrl": "https://affirun.com/legal/privacy"
+}

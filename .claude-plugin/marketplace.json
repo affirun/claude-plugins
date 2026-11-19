@@ -1,0 +1,14 @@
+{
+  "name": "affirun",
+  "owner": { "name": "Affirun", "url": "https://affirun.com" },
+  "metadata": {
+    "description": "Affirun plugins for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "affirun",
+      "source": "./plugins/affirun",
+      "description": "Find the source footage and the Coupang product behind a viral reel, and save both to your Affirun account."
+    }
+  ]
+}

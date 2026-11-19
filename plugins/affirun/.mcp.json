@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "affirun": {
+      "type": "http",
+      "url": "https://api.affirun.com/mcp"
+    }
+  }
+}
