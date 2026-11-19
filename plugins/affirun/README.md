@@ -21,7 +21,7 @@ Both save to your Affirun account (벤치마킹 > 원본 찾기), where you play
 ## 설치
 
 ```
-/plugin marketplace add <this repository>
+/plugin marketplace add affirun/claude-plugins
 /plugin install affirun@affirun
 ```
 
