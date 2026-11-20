@@ -17,7 +17,7 @@ What the data says (local, 2026-11-18, 1,812 breakout reels of the last 60 days)
 ## Rules
 
 - **Check access first, before any browser step.** This skill needs the affirun MCP and an Affirun **Business** plan. Call `get_account_overview`:
-  - the tool is missing: the affirun MCP is not connected. Ask the user to connect it (`/mcp`, pick `affirun`, sign in) and stop.
+  - the tool is missing: the affirun MCP is not connected. Ask the user to connect it (Claude Code: `/mcp`, pick `affirun`, sign in; Antigravity: Customizations > Installed > Affirun, sign in) and stop.
   - `sourceFinder` is not `true`: stop. Tell the user, in Korean, that 쿠팡 상품 찾기 is a Business feature and that they can change plans at 설정 > 결제 (`https://affirun.com/dashboard/settings/billing`). Do not search, do not run the lookups, do not make a page.
   - Any finder tool that answers `payment_required` later: stop the same way and pass on its message.
 - **Never hand over the owner's affiliate link.** `link.coupang.com/a/...`, a storefront `landingUrl`, a `moneying.biz/l/...` address all pay the account you are reading. Report only the clean address the script prints as `productUrl` (`https://www.coupang.com/vp/products/<id>?itemId=..`, with `vendorItemId` when the source had one; without it is fine).
@@ -97,7 +97,7 @@ When the link page gave nothing, gave a block without a product, or there is no 
 
 **The goal is a short list, not one answer** (it does not have to be 100% the same; give a few candidates). The user wants something to sell that a viewer of the reel would accept as "that thing". So return **3 to 5 candidates, closest first**, each with what differs from the reel. An exact match is the first candidate when there is one; when there is none, the list is still the result. Do not end with nothing because no listing was identical.
 
-Load the Claude in Chrome tools in one ToolSearch call (tabs_context_mcp, tabs_create_mcp, navigate, computer, find, read_page, get_page_text, browser_batch, tabs_close_mcp). Work in one new tab and close everything you opened at the end.
+Load the Claude in Chrome tools in one ToolSearch call (tabs_context_mcp, tabs_create_mcp, navigate, computer, find, read_page, get_page_text, browser_batch, tabs_close_mcp). Work in one new tab and close everything you opened at the end. An agent without Claude in Chrome that has the `chrome-devtools` MCP tools (`new_page`, `evaluate_script`) uses those on the same Chrome: read `chrome-devtools.md` in the `source-video-finder` folder next to this skill's folder first; it maps every tool named in this part and in "The wrong page".
 
 1. Open `https://www.coupang.com`, type the query in its search box (do not open a constructed search address), Return. Query, best first: the owner's words from `coupangSearch` or the block title; a brand or model word from the frames; the category noun plus one feature.
    - Keep the category noun first and do not add nouns that are their own category: "욕조 수전 샤워기" returned only faucets.
