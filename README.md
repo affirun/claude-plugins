@@ -27,6 +27,12 @@ Both save to your Affirun account (벤치마킹 > 원본 찾기), where you play
 
 설치한 뒤 `/mcp` 에서 `affirun` 을 골라 어피런 계정으로 로그인한다 (권한 `read`, `content:create`).
 
+## 업데이트
+
+스킬은 자주 고쳐진다. 직접 추가한 마켓플레이스는 자동 업데이트가 기본으로 꺼져 있으니 한 번 켜 둔다: `/plugin` 의 **Marketplaces** 탭에서 `affirun` 을 골라 자동 업데이트를 켠다. 켜 두면 Claude Code 를 쓰는 동안 새 버전을 받아 다음 세션부터 쓴다.
+
+바로 받으려면 `/plugin` 의 **Installed** 탭에서 `affirun` 을 골라 **Update now** 를 누르거나, 터미널에서 `claude plugin update affirun@affirun` 을 실행한다.
+
 ## 쓰기
 
 ```
