@@ -7,9 +7,9 @@ export function build(args) {
 const task = await taskSpace(${spaceRef(space)});
 const page = task.page(${pageRef()});
 await page.goto("https://www.tiktok.com/", { timeout: 30000 }).catch(() => {});
-await page.waitForSelector("loc=role:searchbox[name='Search']", { timeout: 20000 }).catch(() => {});
+await page.waitForSelector('[data-e2e="nav-search"]', { timeout: 20000 }).catch(() => {});
 await page.waitForTimeout(1500);
-await page.click("loc=role:searchbox[name='Search']");
+await page.click('[data-e2e="nav-search"]');
 await page.keyboard.press("ControlOrMeta+a");
 await page.keyboard.insertText(${j(q)});
 await page.keyboard.press("Enter");

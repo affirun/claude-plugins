@@ -10,7 +10,7 @@ const dir = ${absJ(dir)};
 async function search() {
   await page.goto("https://www.tiktok.com/", { timeout: 30000 }).catch(() => {});
   await page.waitForTimeout(3000);
-  await page.click("loc=role:searchbox[name='Search']");
+  await page.click('[data-e2e="nav-search"]');
   await page.keyboard.press("ControlOrMeta+a");
   await page.keyboard.insertText(${j(q)});
   await page.keyboard.press("Enter");
