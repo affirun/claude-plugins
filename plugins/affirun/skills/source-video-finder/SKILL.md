@@ -56,7 +56,7 @@ A run is 25 to 50 model calls, and each one re-reads the whole conversation it r
 
 Then your part is short. Do the rest of this section 0 (the browser and its profile, the access check), start one agent per reel (several reels: all in one message), and pass its reply on to the user as it is, in Korean. The agent's prompt carries everything it cannot ask for: this skill folder's absolute path, the reel link or code, `browser=` with the `deviceId` or `profileId`, the mode, the `sessionId` when the user gave a session link to search again, and anything the user said about this reel (footage only, a product hint, a platform to skip). Do not read the other files of this skill yourself and do not start searching while it runs. When it reports a CAPTCHA or a login wall, tell the user which site; once they have cleared it, a new agent with the `sessionId` continues.
 
-Without that agent type (other clients, an older plugin), or when you are that agent, do everything below yourself. Do the same when the agent cannot start or answers that it has no affirun tools: say so in one line and run the steps here, so the user still gets the result.
+Without that agent type (other clients, an older plugin), or when you are that agent, do everything below yourself. Do the same when the agent cannot start or answers `NO_AFFIRUN_TOOLS` or `NO_SHELL`: say so in one line and run the steps here, so the user still gets the result.
 
 ## 1. Get the reel and its keywords
 
