@@ -1,4 +1,5 @@
 import { absJ, isMain, j, main, need, pageRef, spaceRef } from './lib.mjs'
+import { verifySheets } from './sheet.mjs'
 
 export function build(args) {
   need(args, 4, 'node rn-verify.mjs <space> <dir> <out.png>.json <noteId>...')
@@ -30,4 +31,4 @@ console.log(JSON.stringify(out));
 `
 }
 
-if (isMain(import.meta.url)) main(build)
+if (isMain(import.meta.url)) main(build, (args) => verifySheets('rn', args[1], args.slice(3)))

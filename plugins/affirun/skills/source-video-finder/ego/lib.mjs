@@ -50,7 +50,9 @@ export function runEgo(code, { env = process.env, platform = process.platform } 
   })
 }
 
-export async function main(build) {
-  const code = build(process.argv.slice(2))
+export async function main(build, after) {
+  const args = process.argv.slice(2)
+  const code = build(args)
   process.exitCode = await runEgo(code)
+  if (after) await after(args)
 }

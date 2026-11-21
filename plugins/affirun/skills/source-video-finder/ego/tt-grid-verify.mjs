@@ -1,4 +1,5 @@
 import { absJ, isMain, j, main, need, pageRef, spaceRef } from './lib.mjs'
+import { verifySheets } from './sheet.mjs'
 
 export function build(args) {
   need(args, 3, 'node tt-grid-verify.mjs <space> <dir> <id>...')
@@ -31,4 +32,4 @@ console.log(JSON.stringify(out));
 `
 }
 
-if (isMain(import.meta.url)) main(build)
+if (isMain(import.meta.url)) main(build, (args) => verifySheets('tt', args[1], args.slice(2)))

@@ -44,7 +44,7 @@ Open one page with `new_page { url }` and keep its `pageId`: every other call ta
 3. Crop the video out with the rect times `dpr`: `ffmpeg -y -i <id>-30.png -vf "crop=<w*dpr>:<h*dpr>:<x*dpr>:<y*dpr>" <id>-30.jpg`. Douyin letterboxes a portrait video in a wide player: crop the centred 9:16 part of the rect.
 4. The same at 70%. Put both crops of a batch side by side (`ffmpeg ... hstack`) and view one sheet per batch, not one image per frame.
 
-The fixed zoom regions in section 3 do not apply. A screenshot of a page that is not the front tab can come back blank for the video area: `select_page { pageId, bringToFront: true }` once, then capture again.
+The fixed zoom regions in `sites.md` do not apply. A screenshot of a page that is not the front tab can come back blank for the video area: `select_page { pageId, bringToFront: true }` once, then capture again.
 
 ## Google Lens
 
@@ -54,9 +54,9 @@ One page per frame, as the site note says. On each: `navigate_page` to `https://
 
 The same mapping. A result card's address comes from `evaluate_script`, so no tab is opened to read it. For the candidate pictures, take a screenshot and crop each card by its `getBoundingClientRect()` as above.
 
-## The session page (section 4)
+## The session page (`report.md`)
 
-Open the session `url` in your page and poll it with `evaluate_script`, one read per call, 15 to 20 seconds apart, counting states per card as section 4 says. The downloader opens and closes its own tabs meanwhile: they show up in `list_pages`; leave them alone.
+Open the session `url` in your page and poll it with `evaluate_script`, one read per call, 15 to 20 seconds apart, counting states per card as `report.md` says. The downloader opens and closes its own tabs meanwhile: they show up in `list_pages`; leave them alone.
 
 ## What stays the same
 

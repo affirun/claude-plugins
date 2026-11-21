@@ -81,7 +81,7 @@ function readClaudeCalls(session) {
     if (d.type !== 'assistant' || !d.message?.usage) continue
     if (!subagent && d.isSidechain) continue
     const at = Date.parse(d.timestamp)
-    if (!(at >= sinceMs && at <= untilMs)) continue
+    if (!((subagent || at >= sinceMs) && at <= untilMs)) continue
     const u = d.message.usage
     byId.set(d.message.id ?? `${d.timestamp}`, {
       at,
@@ -150,6 +150,7 @@ const { calls, subagent } = result
 const sum = (k) => calls.reduce((n, c) => n + (c[k] ?? 0), 0)
 const cacheRead = sum('cacheRead')
 const cacheWrite = sum('cacheWrite')
+const first = calls.reduce((m, c) => Math.min(m, c.at), sinceMs)
 const last = calls.reduce((m, c) => Math.max(m, c.at), sinceMs)
 const context = (c) => c.input + c.cacheRead + c.cacheWrite
 console.log(
@@ -161,7 +162,7 @@ console.log(
     cacheReadTokens: cacheRead,
     cacheWriteTokens: cacheWrite,
     outputTokens: sum('output'),
-    durationSec: Math.round((last - sinceMs) / 1000),
+    durationSec: Math.round((last - first) / 1000),
     firstContextTokens: calls.length ? context(calls[0]) : 0,
     maxContextTokens: calls.reduce((m, c) => Math.max(m, context(c)), 0),
     subagent,
