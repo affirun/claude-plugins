@@ -204,7 +204,7 @@ Run the **coupang-product-finder** skill's procedure for the same reel (its `SKI
 - A bio link to a foreign shop (Shopify `cuterhaven.com`) means `sold_elsewhere` with that product address in `otherUrl`; then look for the same item on Coupang.
 - **Coupang in Ego Lite:** product pages (`/vp/products/...` by address) answer Akamai "Access Denied", and from about 10:35 on 2026-11-19 the typed search did too. Grade from the search-result cards and pass the card thumbnail as `imageUrl`; when the search itself is denied, try once, then save the link-page result alone with "쿠팡 검색이 Ego 에서 막힘" in `notChecked`.
 
-Keep the result as the `coupang` array for the save (shape below) and the pictures you will upload: the owner's block picture (`product.<ext>`, converted to JPEG) and the zoomed result cards (`cand-<n>.jpg`).
+Keep the result as the `coupang` array for the save (shape below). **Every listing carries a picture**, as that skill's step 7 and its save part say: `imageUrl` (the `thumbnail*.coupangcdn.com` address the results-page script gives, or a storefront `image`) for every Coupang listing, and an upload only for the owner's block picture on another host (`product.<ext>`, converted to JPEG). Do not upload screenshots of result cards. When `save_source_finds` answers with `missingImages`, fill them and call `save_coupang_products` with the `sessionId`.
 
 ## 4. Report
 
