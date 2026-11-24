@@ -14,5 +14,7 @@
     "tiktok",
     "rednote"
   ],
-  "privacyPolicyUrl": "https://affirun.com/legal/privacy"
+  "privacyPolicyUrl": "https://affirun.com/legal/privacy",
+  "repository": "https://github.com/affirun/claude-plugins",
+  "termsOfServiceUrl": "https://affirun.com/legal/terms"
 }

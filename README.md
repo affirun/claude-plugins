@@ -46,3 +46,19 @@ Both save to your Affirun account (벤치마킹 > 원본 찾기), where you play
 
 - Claude는 검색과 열람만 한다 (좋아요, 팔로우, 댓글, 메시지 없음). 캡차는 풀지 않고 사용자에게 맡긴다. 그래도 자동 검색 기록은 로그인한 계정에 남고, 플랫폼이 계정을 제한할 수 있다.
 - Claude 사용량은 본인 Claude 구독에서 나간다.
+
+## Data and network access
+
+What the plugin reads, where it sends it, and what stays on your computer.
+
+- **Affirun (`api.affirun.com`)**: the only place results are sent. After you sign in with OAuth (scopes `read`, `content:create`), a run saves the reel code, the videos it found (address, title, account, subtitle grade), the Coupang product (title, price, address, a product picture) and the run's model call and token counts. The token counts are read from the local Claude Code transcript of that run by `skills/source-video-finder/usage.mjs`: numbers only, no message text.
+- **Sites opened in your own browser, read only**: Instagram, TikTok, Douyin, RedNote, Coupang, and the reel account's public link page (Inpock, litt.ly, moneying, Affirun). Claude searches and opens pages with your logins. It never likes, follows, comments, messages or buys, and it stops at a CAPTCHA or a login wall.
+- **Image search**: a still frame of the reel is uploaded to Google Lens, and with Ego Lite to 1688 image search, to find the same product.
+- **On your computer**: working files under `./.source-finder/<reel code>/` in the folder you run Claude in (the reel, frames, notes), and your browser choice in `~/.config/affirun/source-finder.json`. Delete them whenever you like.
+- **Local tools the skills run**: `node`, `curl`, `ffmpeg`, and `ego-browser` when you chose Ego Lite. Every script is plain JavaScript inside this plugin; nothing is downloaded and run.
+
+Privacy policy: https://affirun.com/legal/privacy · Terms: https://affirun.com/legal/terms
+
+## License
+
+Proprietary. You may install and run the plugin with your own Affirun account; copying, modifying and redistributing it are not permitted. See [LICENSE](LICENSE).
