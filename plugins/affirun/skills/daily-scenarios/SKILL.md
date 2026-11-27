@@ -121,11 +121,11 @@ node <this skill folder>/look.mjs covers ./.daily-scenarios/<reel code>/covers.j
 (`coverUrl` in the order you want them, at most 12 per sheet; then Read the sheet once.) A video is **clean** only when all of these hold:
 
 - it fills a tall frame: not landscape (`videoWidth` above `videoHeight`, or a note that says 가로), and no black bars above and below a small picture;
-- no burned-in text beyond a small corner mark: tier `S+` or `S`, and the cover agrees. A caption band, a title, a price tag or a brand name across the picture all fail. Tier `A` passes only when its note says the text is small and fixed in one place;
+- its burned-in text can be cleaned: the app's clip cleanup (Vmake) removes captions that are small or sit still in one place, so those pass and you list the clip as `보정 필요` in the report. What fails is text that cleanup cannot take out without wrecking the picture: very large text across the middle, text that moves or changes position, a full-height caption band, a watermark over the product itself. Tiers `S+` and `S` need nothing; `A` and `B` pass or fail by this look, not by the letter;
 - it shows the product itself, in use or close up, not a talking person or a slideshow;
 - it is 720 or more on its short side when the size is known.
 
-**The footage bar:** at least 3 clean videos that together run 20 seconds or more, or 2 clean videos when one of them is the reel's own shoot (`sameShoot`). Below the bar the topic ends here with `영상 부족` and what was wrong (for example "9개 중 깨끗한 영상 1개: 가로 2, 큰 자막 5, 576p 1"). Take a reserve. Never fill up with unclean videos to reach a clip count: the writer cuts from whatever it is given, and one bad clip puts a bad cut in the reel.
+**The footage bar:** at least 3 clean videos that together run 20 seconds or more, or 2 clean videos when one of them is the reel's own shoot (`sameShoot`). Below the bar the topic ends here with `영상 부족` and what was wrong (for example "9개 중 쓸 수 있는 영상 1개: 가로 2, 화면 가운데 큰 자막 5, 576p 1"). Take a reserve. Never fill up with unclean videos to reach a clip count: the writer cuts from whatever it is given, and one bad clip puts a bad cut in the reel.
 
 Choose 3 to 6 of the clean videos:
 
@@ -176,12 +176,12 @@ node <this skill folder>/look.mjs cuts ./.daily-scenarios/<reel code>/cuts.jpg .
 
 A scenario is **finished** only when:
 
-- every cut shows the product, in a frame that fills the screen, without burned-in captions or another brand's name;
+- every cut shows the product, in a frame that fills the screen (no landscape, no black bars), without text that cleanup cannot remove (very large or moving) and without another shop's or brand's name as the main thing in the picture;
 - each cut's narration is about what that cut shows (a line about "끼우는 장면" over a still of the finished sign is a miss);
 - the narration names no price, number or effect you did not give it, and the mechanism it describes is the one the footage shows (do not let it invent how the product works);
 - the first cut has a hook and the strongest picture, and the language is the profile's.
 
-One or two cuts fail: one `request_scenario_revision` that names the cuts and what to do (drop that cut, use another clip, rewrite that line), then `apply_scenario_revision`, then look again. That tool has a small daily cap, so one round per scenario. Still failing, or most cuts failing: the scenario is **not finished**. Report it under the topics that did not finish, with its link and what is wrong, so the user can delete it. Do not present it as a result.
+One or two cuts fail: one `request_scenario_revision` that names the cuts and what to do (drop that cut, use another clip, rewrite that line), then `apply_scenario_revision`, then **build the cut sheet again and look again**: a revision often fixes the line and leaves the picture. One round per scenario. Still failing after that second look, or most cuts failing from the start: the scenario is **not finished**. Report it under the topics that did not finish, with its link and what is wrong, so the user can delete it. Do not present it as a result.
 
 Wording, rhythm and style that are merely not to your taste are the user's call: leave them.
 
@@ -204,7 +204,7 @@ Write the run log first (one `mkdir -p` and one file write), so tomorrow's run k
 
 Then reply in Korean, short, built for a one-minute check:
 
-- One block per finished scenario (finished by step 9's look, not merely completed): its title and link, the reel it came from and the one-line reason it was picked, the clips used (how many, same shoot or not, the lowest quality among them), the Coupang product carried or `쿠팡 상품 없음`, any pause you answered and how, any revision you applied, and `확인할 것`: the one or two things you are least sure of.
+- One block per finished scenario (finished by step 9's look, not merely completed): its title and link, the reel it came from and the one-line reason it was picked, the clips used (how many, same shoot or not, the lowest quality among them, and which need caption cleanup: `보정 필요`), the Coupang product carried or `쿠팡 상품 없음`, any pause you answered and how, any revision you applied, and `확인할 것`: the one or two things you are least sure of.
 - Then the topics that did not finish, one line each with why.
 - Then one line of totals: scenarios made of `count`, source finds run, what stopped the run early if anything.
 
