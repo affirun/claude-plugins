@@ -38,6 +38,7 @@ cat ~/.config/affirun/source-finder.json; echo ---; cat ~/.config/affirun/daily-
   "accounts": [
     {
       "profile": "account profile name or id",
+      "instagram": "the account's Instagram handle, used to find the profile when the name does not match",
       "count": 5,
       "topic": "what this account posts, in the user's words",
       "avoid": "what it never posts",
@@ -52,7 +53,7 @@ cat ~/.config/affirun/source-finder.json; echo ---; cat ~/.config/affirun/daily-
 
 ## 2. Know the account
 
-Call `list_account_profiles` and take the profile the settings name (by id or name), or the one with `isDefault`. No profiles at all: go on without one and say so in the report.
+Call `list_account_profiles` and take the profile the settings name: by id, by name, or the one whose `instagramAccountId` is the account with the settings' `instagram` handle in the overview. Settings that name an account you cannot match end the run with one line: never fall back to another account's profile. Only settings that name no account use the profile with `isDefault`. No profiles at all: go on without one and say so in the report.
 
 You need a one-paragraph picture of the account before you can screen anything: what it shows, to whom, what it sends people to. Take it from the settings' `topic` when there is one. Otherwise build it from the profile name, its `contentCategories`, and what the account actually posted: `get_post_performance` for the profile's `instagramAccountId` over 90 days. A profile without an `instagramAccountId` and settings without a `topic` leave you nothing to screen against: use the profile's name and writing guide name as the topic, pick fewer (3), and say in the report that the account's topic was a guess and where to set it (`~/.config/affirun/daily-scenarios.json`). Note which of its own posts drew comments and DMs: those product types are proven for this audience, and their captions are also your list of what the account already posted.
 
@@ -99,8 +100,8 @@ Take `count` picks minus the carry-overs, plus reserves (half of `count`, rounde
 
 For each pick, in order, until `count` topics have a usable session or picks and reserves run out:
 
-- Hand the reel to the finder agent when your agent tool lists `affirun:source-video-finder` (or `source-video-finder`): one agent, in the foreground, with the prompt the source-video-finder skill's "Hand the run to the agent" part describes (that skill folder's absolute path, which is the sibling folder of this one; the reel link; `browser=` with the saved `deviceId` or `profileId`; quick mode) plus `This run is unattended: never ask the user anything.` Give it a strong model: the one the starting request names, otherwise `opus`. Do not read the finder's files yourself.
-- Without that agent type, load the source-video-finder skill and run it yourself for this reel under the rules at the top. Skip its access check.
+- Hand the reel to the finder agent when your agent tool lists `affirun:source-video-finder` (or `source-video-finder`) and the affirun MCP tools you see are the plugin's own (`mcp__plugin_affirun_affirun__…`): one agent, in the foreground, with the prompt the source-video-finder skill's "Hand the run to the agent" part describes (that skill folder's absolute path, which is the sibling folder of this one; the reel link; `browser=` with the saved `deviceId` or `profileId`; quick mode) plus `This run is unattended: never ask the user anything.` Give it a strong model: the one the starting request names, otherwise `opus`. Do not read the finder's files yourself.
+- Without that agent type, or when affirun is connected another way (a claude.ai connector: the agent cannot reach it), or when the agent answers `NO_AFFIRUN_TOOLS`: load the source-video-finder skill and run it yourself for this reel under the rules at the top. Skip its access check. This is not a machine failure: go on to the next reel the same way.
 - It ends with a session link (`/dashboard/benchmark/source-finds/<id>`): go to step 7 for that session right away, so the scenario is being written while you find the next one.
 - It ends without a session: note the reason, take the next pick or reserve.
 - It failed because of this machine (browser not connected, signed out, CAPTCHA on every platform): stop finding. The next reel would end the same way. Go on with the sessions you have.
