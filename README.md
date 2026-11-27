@@ -4,6 +4,8 @@ Give Claude a viral product reel and it does two things in your own Chrome:
 
 - **source-video-finder**: searches TikTok, Douyin, RedNote and Instagram for the footage the reel was cut from, opens each video to check it, and grades its subtitles.
 - **coupang-product-finder**: finds the Coupang product the reel sells (the caption's link number, the account's link page, or Coupang itself).
+- **source-find-queue**: works through the reels you lined up in the app (벤치마킹 > 원본 찾기, "큐에 넣기"), one at a time, so a scheduled task can find them while you are away. Only for accounts that see the queue in the app.
+- **daily-scenarios**: one unattended daily run, from picking about five topics in the breakout feed, through finding source videos for each, to finished AI scenarios you only have to judge. Made for a scheduled task. Only for accounts that have scenario autopilot turned on.
 
 Both save to your Affirun account (벤치마킹 > 원본 찾기), where you play the videos and start a scenario from them.
 
